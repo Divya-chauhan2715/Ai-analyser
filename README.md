@@ -1,111 +1,190 @@
-# 🛍️ E-commerce Data Analysis & Recommendation System
+# 🛍️ BizConnect — B2B Marketplace & AI Analytics Platform
 
-A complete end-to-end e-commerce analytics project that analyzes sales data, generates business insights, builds recommendation engines, and predicts future sales — structured like a real-world case study (Amazon/Flipkart style).
+A full-stack B2B marketplace with integrated **ML-powered analytics**, **product recommendations**, and **sales forecasting**. Built with the MERN stack + Python microservices.
+
+## 🌐 Live Demo
+
+| Service | URL |
+|---------|-----|
+| **Frontend** | [https://bizconnect-app.onrender.com](https://bizconnect-app.onrender.com) |
+| **Backend API** | [https://bizconnect-api.onrender.com](https://bizconnect-api.onrender.com) |
+
+> **Note:** The app is hosted on Render's free tier. It may take ~30 seconds to spin up on first visit.
 
 ---
 
 ## 📋 Table of Contents
 
-- [Project Overview](#-project-overview)
 - [Features](#-features)
 - [Tech Stack](#-tech-stack)
+- [Architecture](#-architecture)
 - [Project Structure](#-project-structure)
 - [Setup & Installation](#-setup--installation)
-- [How to Run](#-how-to-run)
+- [Deployment](#-deployment)
+- [API Endpoints](#-api-endpoints)
 - [Key Findings](#-key-findings)
-- [Screenshots](#-screenshots)
-
----
-
-## 🎯 Project Overview
-
-This project analyzes a synthetic e-commerce dataset (~10,000 orders) to extract meaningful business insights and build intelligent recommendation systems. It covers the full data analytics pipeline from raw data to actionable business recommendations.
-
-### Objectives:
-1. **Data Cleaning** — Handle missing values, duplicates, and data type issues
-2. **Exploratory Data Analysis** — Uncover patterns in sales, customers, and products
-3. **Business Insights** — Generate actionable recommendations for growth
-4. **Recommendation System** — Content-based, collaborative, and hybrid filtering
-5. **Sales Prediction** — ML models to forecast future revenue
-6. **Interactive Dashboard** — Streamlit web app for stakeholder exploration
 
 ---
 
 ## ✨ Features
 
-### 📊 Data Analysis
-- Top-selling products by revenue and quantity
-- Category & sub-category profitability analysis
-- Monthly/yearly sales trends with seasonal patterns
-- Region-wise performance comparison
-- Customer purchasing behavior & segmentation (RFM-style)
-- Discount impact on profitability
+### 🏪 B2B Marketplace
+- Multi-role authentication (Business, Buyer, Admin)
+- Product catalog with search & filters
+- Order management with status tracking
+- Customer relationship management
+- Payment tracking & invoicing
 
-### 📈 Visualizations (12 chart types)
-- Bar charts, line charts, pie charts
-- Heatmaps (sales by month × year)
-- Scatter plots (discount vs profit)
-- Correlation matrices
-- Box plots (profit distribution)
+### 📊 Business Dashboard
+- Revenue analytics & trends
+- Inventory management
+- Order pipeline visualization
+- Customer growth tracking
+- Top products analysis
 
-### 🤖 Recommendation System
-- **Content-Based Filtering** — Recommends based on customer's category preferences
-- **Collaborative Filtering** — Uses user-item matrix + cosine similarity
-- **Hybrid Engine** — Combines both for robust recommendations
+### 🤖 AI/ML Analytics (Python Microservice)
+- **Product Recommendations** — Content-based, collaborative, and hybrid filtering
+- **Sales Forecasting** — ML models to predict future revenue
+- **Advanced Analytics** — Customer segmentation, trend analysis, feature importance
+- **Trending Products** — Real-time popularity tracking
 
-### 🔮 Machine Learning
-- **Linear Regression** — Simple, interpretable baseline
-- **Random Forest** — Captures non-linear patterns
-- Evaluation: MAE, RMSE, R², MAPE
-- Feature importance analysis
-
-### 🖥️ Interactive Dashboard
-- Streamlit web app with 5 tabs
-- Real-time filters (year, category, region)
-- KPI cards with gradient styling
-- Interactive Plotly charts
-- Customer recommendation explorer
+### 🖥️ Admin Panel
+- Platform-wide business management
+- User & product moderation
+- System-wide analytics
 
 ---
 
 ## 🛠️ Tech Stack
 
+### Frontend
+| Technology | Purpose |
+|------------|---------|
+| React 18 | UI framework |
+| Vite 5 | Build tool & dev server |
+| Tailwind CSS | Utility-first styling |
+| React Router v6 | Client-side routing |
+| Recharts | Chart visualizations |
+| Axios | HTTP client |
+| Lucide React | Icon library |
+
+### Backend
+| Technology | Purpose |
+|------------|---------|
+| Node.js | Runtime |
+| Express.js | Web framework |
+| MongoDB + Mongoose | Database & ODM |
+| JWT | Authentication |
+| Bcrypt.js | Password hashing |
+| Cloudinary | Image hosting |
+
+### Analytics Microservice
 | Technology | Purpose |
 |------------|---------|
 | Python 3.9+ | Core language |
-| Pandas | Data manipulation |
-| NumPy | Numerical computing |
-| Matplotlib | Static visualizations |
-| Seaborn | Statistical plots |
-| Scikit-learn | ML models & metrics |
-| Plotly | Interactive charts |
-| Streamlit | Web dashboard |
-| Jupyter | Notebook environment |
+| Flask | Micro web framework |
+| Scikit-learn | ML models |
+| Pandas / NumPy | Data processing |
+| PyMongo | MongoDB driver |
+
+---
+
+## 🏗️ Architecture
+
+```
+┌─────────────────────┐     ┌─────────────────────┐
+│    React Frontend    │────▶│   Node.js Backend    │
+│  (Render Static)     │     │   (Render Web Svc)   │
+│                      │     │                      │
+│  • Landing Page      │     │  • Auth API          │
+│  • Marketplace       │     │  • Products API      │
+│  • Business Dashboard│     │  • Orders API        │
+│  • Analytics Views   │     │  • Customers API     │
+│  • Admin Panel       │     │  • Analytics API     │
+└──────────┬───────────┘     └──────────┬───────────┘
+           │                            │
+           │     ┌──────────────────┐   │
+           └────▶│  Python Flask    │◀──┘
+                 │  ML Microservice │
+                 │                  │
+                 │ • Recommendations│
+                 │ • Sales Forecast │
+                 │ • Advanced Stats │
+                 └────────┬─────────┘
+                          │
+                 ┌────────▼─────────┐
+                 │    MongoDB       │
+                 │  (Shared DB)     │
+                 └──────────────────┘
+```
 
 ---
 
 ## 📁 Project Structure
 
 ```
-Vaishnavy_project/
-├── data/
-│   └── ecommerce_data.csv          # Generated dataset (10,000+ orders)
-├── notebooks/
-│   └── ecommerce_analysis.ipynb    # Main analysis notebook
-├── src/
-│   ├── __init__.py
-│   ├── data_generator.py           # Dataset generation script
-│   ├── data_cleaning.py            # Data cleaning & preprocessing
-│   ├── analysis.py                 # Analysis functions
-│   ├── visualizations.py           # Chart generation (12 types)
-│   ├── recommendation.py           # Recommendation engines
-│   └── sales_prediction.py         # ML prediction pipeline
-├── dashboard/
-│   └── app.py                      # Streamlit interactive dashboard
-├── outputs/
-│   └── *.png                       # Saved chart images
-├── requirements.txt                # Python dependencies
-└── README.md                       # This file
+BizConnect/
+├── client/                      # React Frontend (Vite)
+│   ├── src/
+│   │   ├── components/          # Reusable UI components
+│   │   │   ├── Layout/          # Dashboard & navigation layout
+│   │   │   └── ProtectedRoute   # Auth guard component
+│   │   ├── context/             # React context (Auth)
+│   │   ├── pages/
+│   │   │   ├── Landing.jsx      # Public landing page
+│   │   │   ├── Login.jsx        # Login page
+│   │   │   ├── Register.jsx     # Registration page
+│   │   │   ├── dashboard/       # Business owner pages
+│   │   │   │   ├── BusinessDashboard.jsx
+│   │   │   │   ├── Products.jsx
+│   │   │   │   ├── Inventory.jsx
+│   │   │   │   ├── Orders.jsx
+│   │   │   │   ├── Customers.jsx
+│   │   │   │   ├── Payments.jsx
+│   │   │   │   ├── Analytics.jsx
+│   │   │   │   └── AdvancedAnalytics.jsx
+│   │   │   ├── marketplace/     # Buyer pages
+│   │   │   │   ├── Marketplace.jsx
+│   │   │   │   ├── ProductDetail.jsx
+│   │   │   │   ├── Recommendations.jsx
+│   │   │   │   └── OrderHistory.jsx
+│   │   │   └── admin/           # Admin pages
+│   │   │       └── AdminDashboard.jsx
+│   │   ├── utils/api.js         # Axios instance config
+│   │   └── App.jsx              # Main router
+│   ├── .env.development         # Local dev environment
+│   ├── .env.production          # Production environment
+│   └── vite.config.js           # Vite config with dev proxy
+│
+├── server/                      # Node.js Backend
+│   ├── config/db.js             # MongoDB connection
+│   ├── middleware/               # Auth & error handling
+│   ├── models/                  # Mongoose schemas
+│   │   ├── User.js
+│   │   ├── Product.js
+│   │   ├── Order.js
+│   │   └── Customer.js
+│   ├── routes/                  # Express route handlers
+│   │   ├── auth.js
+│   │   ├── products.js
+│   │   ├── orders.js
+│   │   ├── customers.js
+│   │   ├── admin.js
+│   │   └── analytics.js
+│   ├── server.js                # Express entry point
+│   └── seed.py                  # Database seeder script
+│
+├── analytics-service/           # Python ML Microservice
+│   ├── app.py                   # Flask API server
+│   ├── recommendation_engine.py # Recommendation algorithms
+│   ├── analytics_engine.py      # Sales prediction & analytics
+│   └── requirements.txt         # Python dependencies
+│
+├── data/                        # Sample dataset
+├── notebooks/                   # Jupyter analysis notebooks
+├── src/                         # Standalone analytics modules
+├── dashboard/                   # Streamlit dashboard (standalone)
+└── outputs/                     # Generated charts
 ```
 
 ---
@@ -113,62 +192,126 @@ Vaishnavy_project/
 ## 🚀 Setup & Installation
 
 ### Prerequisites
-- Python 3.9 or higher
-- pip (Python package manager)
+- Node.js 18+
+- Python 3.9+
+- MongoDB (local or Atlas)
 
-### Step 1: Clone the repository
+### 1. Clone the repository
 ```bash
-git clone <repository-url>
-cd Vaishnavy_project
+git clone https://github.com/Divya-chauhan2715/Ai-analyser.git
+cd Ai-analyser
 ```
 
-### Step 2: Install dependencies
+### 2. Install Backend
 ```bash
+cd server
+npm install
+```
+Create `server/.env`:
+```env
+PORT=5001
+MONGO_URI=mongodb://localhost:27017/bizconnect
+JWT_SECRET=your_secret_key
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+```
+
+### 3. Install Frontend
+```bash
+cd client
+npm install
+```
+
+### 4. Install Analytics Service
+```bash
+cd analytics-service
 pip install -r requirements.txt
 ```
 
-### Step 3: Generate the dataset
+### 5. Run All Services
 ```bash
-python src/data_generator.py
+# Terminal 1 — Backend
+cd server && npm start
+
+# Terminal 2 — Frontend
+cd client && npm run dev
+
+# Terminal 3 — Analytics
+cd analytics-service && python app.py
 ```
+
+Open `http://localhost:5173` in your browser.
 
 ---
 
-## 💻 How to Run
+## 🌍 Deployment
 
-### Option 1: Jupyter Notebook (Recommended for analysis)
-```bash
-cd notebooks
-jupyter notebook ecommerce_analysis.ipynb
-```
-Run all cells sequentially to see the complete analysis.
+The app is deployed on **Render** (free tier).
 
-### Option 2: Streamlit Dashboard (Interactive exploration)
-```bash
-streamlit run dashboard/app.py
-```
-Opens a web browser with the interactive dashboard at `http://localhost:8501`.
+### Frontend (Static Site)
+- **Build Command:** `npm run build`
+- **Publish Directory:** `dist`
+- **Environment Variables:**
+  - `VITE_API_URL` = `https://bizconnect-api.onrender.com/api`
+  - `VITE_ML_API_URL` = `<your-analytics-service-url>`
 
-### Option 3: Run individual modules
-```python
-from src.data_cleaning import get_clean_data
-from src.analysis import generate_business_insights
-from src.recommendation import HybridRecommender
-from src.sales_prediction import run_prediction_pipeline
+### Backend (Web Service)
+- **Build Command:** `npm install`
+- **Start Command:** `node server.js`
+- **Environment Variables:**
+  - `MONGO_URI` = your MongoDB Atlas connection string
+  - `JWT_SECRET` = your secret key
+  - `PORT` = `10000` (Render default)
 
-# Load and clean data
-df = get_clean_data('data/ecommerce_data.csv')
+### Analytics Service (Web Service)
+- **Build Command:** `pip install -r requirements.txt`
+- **Start Command:** `gunicorn app:app`
+- **Environment Variables:**
+  - `MONGO_URI` = same MongoDB Atlas connection string
 
-# Get insights
-insights = generate_business_insights(df)
+---
 
-# Get recommendations
-rec = HybridRecommender(df)
-rec.recommend('CUST-1001', n=5)
+## 📡 API Endpoints
 
-# Predict sales
-results = run_prediction_pipeline(df)
-```
+### Auth
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/auth/register` | Register new user |
+| POST | `/api/auth/login` | Login |
+| GET | `/api/auth/me` | Get current user |
+
+### Products
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/products` | List all products |
+| POST | `/api/products` | Create product |
+| PUT | `/api/products/:id` | Update product |
+| DELETE | `/api/products/:id` | Delete product |
+
+### Orders
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/orders` | List orders |
+| POST | `/api/orders` | Create order |
+| PUT | `/api/orders/:id/status` | Update status |
+
+### Analytics
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/analytics/revenue` | Monthly revenue |
+| GET | `/api/analytics/orders` | Order trends |
+| GET | `/api/analytics/top-products` | Best sellers |
+| GET | `/api/analytics/customer-growth` | Growth stats |
+
+### ML Analytics
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/ml/health` | Service health |
+| GET | `/api/ml/recommendations/:userId` | Recommendations |
+| GET | `/api/ml/analytics/advanced` | Advanced analytics |
+| GET | `/api/ml/predictions/sales` | Sales forecast |
+| GET | `/api/ml/trending` | Trending products |
 
 ---
 
@@ -178,14 +321,8 @@ results = run_prediction_pipeline(df)
 2. Sales show clear **seasonal peaks** during October–December (festive season)
 3. **Aggressive discounting (>20%)** reduces profit margins by ~15%
 4. **Consumer segment** dominates with ~50% of total orders
-5. **Year-over-year growth** indicates healthy business expansion
-6. **Random Forest** outperforms Linear Regression for sales prediction
-
----
-
-## 📸 Screenshots
-
-Charts and visualizations are saved to the `outputs/` folder when you run the notebook.
+5. **Random Forest** outperforms Linear Regression for sales prediction
+6. **Hybrid recommendations** (content + collaborative) yield the most relevant results
 
 ---
 
@@ -197,5 +334,6 @@ This project is for educational purposes.
 
 ## 🙏 Acknowledgments
 
-- Dataset inspired by Superstore Sales and Indian E-commerce patterns
-- Built as a beginner-friendly data analytics case study
+- Built as a full-stack B2B marketplace case study
+- ML analytics inspired by real-world e-commerce recommendation systems
+- Dataset patterns based on Indian e-commerce trends

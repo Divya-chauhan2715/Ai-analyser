@@ -10,7 +10,7 @@ import {
     XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend
 } from 'recharts';
 
-const ML_API = 'http://localhost:5002';
+const ML_API = import.meta.env.VITE_ML_API_URL || 'http://localhost:5002';
 
 const COLORS = ['#6366F1', '#EC4899', '#10B981', '#F59E0B', '#06B6D4', '#8B5CF6', '#F97316'];
 

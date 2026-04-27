@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import DashboardLayout from '../../components/Layout/DashboardLayout';
 import { Sparkles, TrendingUp, ShoppingBag, Star, RefreshCw, Zap } from 'lucide-react';
 
-const ML_API = 'http://localhost:5002';
+const ML_API = import.meta.env.VITE_ML_API_URL || 'http://localhost:5002';
 
 const Recommendations = () => {
     const { user } = useAuth();
