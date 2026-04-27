@@ -80,6 +80,12 @@ def get_analytics_engine():
 # ENDPOINTS
 # =============================================================================
 
+@app.route('/', methods=['GET'])
+def root():
+    """Root health check for Render."""
+    return safe_jsonify({'service': 'BizConnect Analytics', 'status': 'running'})
+
+
 @app.route('/api/ml/health', methods=['GET'])
 def health():
     """Health check endpoint."""
@@ -173,8 +179,9 @@ def get_trending():
 # RUN
 # =============================================================================
 if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 5002))
     print("=" * 50)
     print("  BizConnect Analytics Service")
-    print("  http://localhost:5002")
+    print(f"  http://localhost:{port}")
     print("=" * 50)
-    app.run(host='0.0.0.0', port=5002, debug=True)
+    app.run(host='0.0.0.0', port=port, debug=True)
